@@ -33,7 +33,6 @@ brew install aria2
 brew install tree
 brew install cloc
 brew install figlet
-brew install autojump
 
 # Installing Cask apps
 brew cask install iina
