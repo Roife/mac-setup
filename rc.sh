@@ -10,3 +10,5 @@ cp ./.clang-format ~/.clang-format
 cp ./.gitconfig ~/.gitconfig
 cp ./.gitignore ~/.gitignore
 cp ./aria2.conf ~/.aria2/aria2.config
+
+ssh-keygen -t rsa -C "roife@outlook.com"
