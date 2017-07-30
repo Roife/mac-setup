@@ -24,6 +24,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kshenoy/vim-signature'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'rhysd/vim-clang-format'
+Plugin 'mileszs/ack.vim'
 
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
@@ -516,3 +517,6 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
 nmap , <Plug>(easymotion-s)
+
+" ack(ag)
+let g:ackprg = 'ag --vimgrep'
