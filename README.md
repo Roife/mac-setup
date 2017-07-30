@@ -1,5 +1,8 @@
 # roife's dotfiles
 ## Installation
+Firstly, you should go to `System Preference > Keyboard > Shortcuts` check a any option of them
+Run commands below
+    $ xcode-select --install
     $ git clone https://github.com/Roife/mac-setup
     $ cd mac-setup
     $ ./init.sh
