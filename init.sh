@@ -11,12 +11,12 @@ xcode-select --install
 
 # homebrew settings
 ./brew.sh
-echo "brew.sh is finished"
+echo "======== brew.sh is finished ========"
 ./shell.sh
-echo "shell.sh is finished"
+echo "======== shell.sh is finished ========"
 ./macos.sh
-echo "macos.sh is finished"
+echo "======== macos.sh is finished ========"
 ./rc.sh
 
 
-echo "Finish! Please restart now!"
+echo "======== Finish! Please restart now! ========"
