@@ -322,3 +322,6 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Bottom left screen corner → Start screen saver
 defaults write com.apple.dock wvous-bl-corner -int 11
 defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Terminal
+open ./gruvbox-dark.terminal
