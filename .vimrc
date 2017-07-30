@@ -8,9 +8,11 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-Bundle 'gmarik/vundle'
+Bundle 'Vundle.vim'
 Bundle 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Bundle 'maxbrunsfeld/vim-emacs-bindings'
 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
@@ -74,8 +76,6 @@ set ruler
 
 " Height of the command bar
 set cmdheight=2
-
-
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -173,13 +173,13 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
+" TODO
 
 "------------------------------------------
 " Moving around, tabs, windows and buffers
 "------------------------------------------
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+map <space><space> /
 map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
@@ -255,24 +255,17 @@ function! File_size(f)
         return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
     endif
 endfunction
-set statusline=%<%1*[B-%n]%*
-" TOT is an abbreviation for total
-set statusline+=%2*[TOT:%{Buf_total_num()}]%*
-set statusline+=%3*\ %{File_size(@%)}\ %*
-set statusline+=%4*\ %F\ %*
-set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
-set statusline+=%6*\ %m%r%y\ %*
-set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
-set statusline+=%8*\ %P\ %*
+set statusline=%<%1*\ %n\ \|\ %{Buf_total_num()}\ %*
+set statusline+=%2*\ %F\ %*
+set statusline+=%3*\ %m%r%y\ %*
+set statusline+=%=%4*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-6.(%l:%c%V%)%*
+set statusline+=%5*\ %P\ %*
 " default bg for statusline is 236 in space-vim-dark
-hi User1 cterm=bold ctermfg=232 ctermbg=179
-hi User2 cterm=None ctermfg=214 ctermbg=242
-hi User3 cterm=None ctermfg=251 ctermbg=240
-hi User4 cterm=bold ctermfg=169 ctermbg=239
-hi User5 cterm=None ctermfg=208 ctermbg=238
-hi User6 cterm=None ctermfg=246 ctermbg=237
-hi User7 cterm=None ctermfg=250 ctermbg=238
-hi User8 cterm=None ctermfg=249 ctermbg=240
+hi User1 cterm=None ctermfg=214 ctermbg=242
+hi User2 cterm=None ctermfg=251 ctermbg=240
+hi User3 cterm=bold ctermfg=169 ctermbg=239
+hi User4 cterm=None ctermfg=250 ctermbg=238
+hi User5 cterm=None ctermfg=249 ctermbg=240
 
 "------------------
 " Editing mappings
@@ -296,18 +289,18 @@ vmap <C-\> <leader>ci
 imap <C-\> <ESC><leader>ci
 
 " move at insert mode
-imap <C-e> <ESC>$a
-imap <C-a> <ESC>0i
-
-imap <C-n> <ESC>ja
-imap <C-p> <ESC>ka
-imap <C-f> <ESC>ha
-imap <C-b> <ESC>la
-
-imap <C-k> <ESC>lDa
-imap <C-w> <ESC>ld0a
-
-imap<C-u> <Esc>ua
+" imap <C-e> <C-o>$
+" imap <C-a> <C-o>^
+"
+" imap <C-n> <Down>
+" imap <C-p> <Up>
+" imap <C-f> <Right>
+" imap <C-b> <Left>
+"
+" imap <C-k> <C-r>=<SID>kill_line()<CR>
+" imap <C-w> <ESC>d0xi
+"
+" imap<C-u> <Esc>ua
 " Quick Visual mode
 imap <C-v> <ESC>v
 
@@ -391,13 +384,13 @@ endfunction
 " Helper functions
 "------------------
 " Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
-
+" function! HasPaste()
+    " if &paste
+        " return 'PASTE MODE  '
+    " endif
+    " return ''
+" endfunction
+"
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -467,7 +460,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-"" nerdtree
+" nerdtree
 " Show git status
 let g:NERDTreeShowIgnoredStatus = 1
 " Open nerdtree automatically when open a directory
@@ -481,23 +474,23 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
     exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('cpp', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " Auto pairs
 " let g:AutoPairsFlyMode = 1
-
+"
 " Undotree
 nnoremap <F2> :UndotreeToggle<cr>
 set undodir=~/.undodir/
@@ -520,3 +513,16 @@ nmap , <Plug>(easymotion-s)
 
 " ack(ag)
 let g:ackprg = 'ag --vimgrep'
+
+" copy & paste
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
+
+
+
+
+
+
+
+
+
