@@ -184,15 +184,11 @@ map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
-
-" Let 'tl' toggle between this and the last accessed tab
+map <leader>tr :tabnew<cr>
+map <leader>ty :tabonly<cr>
+map <leader>tg :tabclose<cr>
 let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 
@@ -205,12 +201,12 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-    set switchbuf=useopen,usetab,newtab
-    set stal=2
+	set switchbuf=useopen,usetab,newtab
+	set stal=2
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
@@ -220,17 +216,16 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Always show the status line
 set laststatus=2
 
-set statusline=%<%1*\ %n\ \%*
-set statusline+=%2*\ %F\ %*
-set statusline+=%3*\ %m%r%y\ %*
-set statusline+=%=%4*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-8.(%l:%c%V%)%*
-set statusline+=%5*\ %P\ %*
-" default bg for statusline is 236 in space-vim-dark
+set statusline=%<%1*\ [%n]\ \%*
+set statusline+=%2*\ %F
+set statusline+=%=%3*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-8.(%l:%c%V%)%*
+set statusline+=%4*\ %P\ %*
+"default bg for statusline is 236 in space-vim-dark
 hi User1 cterm=None ctermfg=214 ctermbg=242
-hi User2 cterm=None ctermfg=251 ctermbg=240
-hi User3 cterm=bold ctermfg=169 ctermbg=239
+"hi User2 cterm=None ctermfg=251 ctermbg=240
+hi User3 cterm=bold ctermfg=100 ctermbg=236
 hi User4 cterm=None ctermfg=250 ctermbg=238
-hi User5 cterm=None ctermfg=249 ctermbg=240
+"hi User5 cterm=None ctermfg=249 ctermbg=240
 
 "------------------
 " Editing mappings
@@ -282,73 +277,40 @@ nmap <F7> :call DoOneFileMake()<CR>
 nmap <F8> :call RunFile()<CR>
 nmap <F9> :call DebugFile()<CR>
 function DebugFile()
-    " if(expand("%:p:h")!=getcwd())
-    " echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
-    " endif
-    call DoOneFileMake()
-    if len(getqflist()) == 0
-        exec "cclose"
-        if &filetype=='c' || &filetype=='cpp'
-            exec "!lldb ./%.o"
-        endif
-    endif
+	call DoOneFileMake()
+	if len(getqflist()) == 0
+		if &filetype=='c' || &filetype=='cpp'
+			exec "!lldb ./%.o"
+		endif
+	endif
 endfunction
 
 function RunFile()
-    " if(expand("%:p:h")!=getcwd())
-    " echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
-    " endif
-    call DoOneFileMake()
-    if len(getqflist()) == 0
-        exec "cclose"
-        exec "!./%.o"
-    endif
+	call DoOneFileMake()
+	if len(getqflist()) == 0
+		exec "!./%.o"
+	endif
 endfunction
 
 function DoOneFileMake()
-    " if(expand("%:p:h")!=getcwd())
-    " echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
-    " endif
-    exec "w"
-    call SetCompilation()
-    exec "silent make\|redraw!"
-    if len(getqflist()) == 0
-        exec "cclose"
-    else
-        exec "copen"
-    endif
-endfunction
+	" if(expand("%:p:h")!=getcwd())
+	" echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
+	" endif
+	exec "w"
+	"call SetCompilation()
 
-function SetCompilation()
-    if &filetype=='c'
-        set makeprg=gcc\ %\ -o\ %<\ -g\ -lstdc++\ -Wall
-    elseif &filetype=='cpp'
-        set makeprg=g++\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
-    endif
-endfunction
+	if &filetype=='c'
+		set makeprg=gcc\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
+	elseif &filetype=='cpp'
+		set makeprg=g++\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
+	endif
 
-"------------------
-" Helper functions
-"------------------
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
+	exec "silent make\|redraw!"
+	if len(getqflist()) == 0
+		exec "cclose"
+	else
+		exec "copen"
+	endif
 endfunction
 
 "------------------
@@ -372,4 +334,91 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
-map , <Plug>(easymotion-s)
+map - <Plug>(easymotion-s)
+
+" tabs
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+nnoremap H gT
+nnoremap L gt
+
+set tabline=%!MyTabLine()  " custom tab pages line
+function MyTabLine()
+	let s = '' " complete tabline goes here
+	" loop through each tab page
+	for t in range(tabpagenr('$'))
+		" set highlight
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" set the tab page number (for mouse clicks)
+		let s .= '%' . (t + 1) . 'T'
+		let s .= ' '
+		" set page number string
+		let s .= t + 1 . ' '
+		" get buffer names and statuses
+		let n = ''      "temp string for buffer names while we loop and check buftype
+		let m = 0       " &modified counter
+		let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
+		" loop through each buffer in a tab
+		for b in tabpagebuflist(t + 1)
+			" buffer types: quickfix gets a [Q], help gets [H]{base fname}
+			" others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+			if getbufvar( b, "&buftype" ) == 'help'
+				let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+			elseif getbufvar( b, "&buftype" ) == 'quickfix'
+				let n .= '[Q]'
+			else
+				let n .= pathshorten(bufname(b))
+			endif
+			" check and ++ tab's &modified count
+			if getbufvar( b, "&modified" )
+				let m += 1
+			endif
+			" no final ' ' added...formatting looks better done later
+			if bc > 1
+				let n .= ' '
+			endif
+			let bc -= 1
+		endfor
+		" add modified label [n+] where n pages in tab are modified
+		if m > 0
+			let s .= '[' . m . '+]'
+		endif
+		" select the highlighting for the buffer names
+		" my default highlighting only underlines the active tab
+		" buffer names.
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" add buffer names
+		if n == ''
+			let s.= '[New]'
+		else
+			let s .= n
+		endif
+		" switch to no underlining and add final space to buffer list
+		let s .= ' '
+	endfor
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s .= '%#TabLineFill#%T'
+	" right-align the label to close the current tab page
+	if tabpagenr('$') > 1
+		let s .= '%=%#TabLineFill#%999Xclose'
+	endif
+	return s
+endfunction
+
+:hi TabLineSel ctermfg=white
