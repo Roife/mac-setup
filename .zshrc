@@ -52,7 +52,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git web-search wd zsh-syntax-highlighting colored-man-pages zsh-autosuggestions extract)
+plugins=(git web-search zsh-syntax-highlighting colored-man-pages zsh-autosuggestions extract wd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,4 +122,10 @@ run(){
 #    find $1 -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 #}
 
+export GITHUB=~/Documents/github
+backup(){
+    cp ~/.clang-format ~/.aria2/aria2.config .gitconfig .gitignore .tmux.conf .vimrc .wgetrc .zshrc $GITHUB/mac-setup
+}
+
 alias vi='vim'
+alias m='wd'
