@@ -28,7 +28,7 @@ brew install pandoc
 brew install graphviz
 brew install tmux
 brew install aria2
-brew install the_silver_searcher
+#brew install the_silver_searcher
 
 # Installing useful tools
 brew install tree
