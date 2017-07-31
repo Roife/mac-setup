@@ -33,7 +33,6 @@ brew install aria2
 # Installing useful tools
 brew install tree
 brew install cloc
-brew install figlet
 
 # Installing Cask apps
 brew cask install iina
@@ -42,7 +41,6 @@ brew cask install dash
 brew cask install bettertouchtool
 brew cask install launchbar
 brew cask install shortcat
-brew cask install keyboard-maestro
 
 # Installing Quicklook Plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch betterzipql webpquicklook
