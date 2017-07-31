@@ -104,6 +104,7 @@ defaults write -g com.apple.trackpad.scaling 1
 # Set Key Repeat
 defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set CapsLock to Control (1452-628-0 is your product ID)
 defaults -currentHost write -g com.apple.keyboard.modifiermapping.1452-628-0 -array "<dict><key>HIDKeyboardModifierMappingSrc</key><integer>30064771129</integer><key>HIDKeyboardModifierMappingDst</key><integer>30064771296</integer></dict>"
