@@ -9,7 +9,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Bundle 'Vundle.vim'
-Bundle 'maxbrunsfeld/vim-emacs-bindings'
 Bundle 'troydm/easytree.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
@@ -23,13 +22,17 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'rhysd/vim-clang-format'
 Bundle 'SirVer/ultisnips'
 Bundle 'morhetz/gruvbox'
+Bundle 'maxbrunsfeld/vim-emacs-bindings'
 call vundle#end()
+
+imap <C-n> <Down>
+imap <C-p> <Up>
 
 "---------
 " General
 "---------
 " hightlight current line/column
-set cursorline
+"set cursorline
 "set cursorcolumn
 "au WinLeave * set nocursorline nocursorcolumn
 "au WinEnter * set cursorline cursorcolumn
@@ -163,7 +166,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 "------------------------------------------
-" Moving around, tabs, windows and buffers
+" Moving around, windows and buffers
 "------------------------------------------
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -191,6 +194,18 @@ let g:lasttab = 1
 nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+nnoremap H gT
+nnoremap L gt
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -336,20 +351,9 @@ au Syntax * RainbowParenthesesLoadBraces
 "Easy Motion
 map - <Plug>(easymotion-s)
 
-" tabs
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
-nnoremap H gT
-nnoremap L gt
-
+"---------
+" Tabline
+"---------
 set tabline=%!MyTabLine()  " custom tab pages line
 function MyTabLine()
 	let s = '' " complete tabline goes here
