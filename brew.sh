@@ -42,6 +42,12 @@ brew cask install bettertouchtool
 brew cask install launchbar
 brew cask install shortcat
 
+# qq
+# mathstudio
+# Affinity Photo
+# Affinity Designer
+# Yoink
+
 # Installing Quicklook Plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch betterzipql webpquicklook
 
