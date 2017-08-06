@@ -15,7 +15,6 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'hlissner/vim-multiedit'
 Bundle 'mbbill/undotree'
-Bundle 'repeat.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/rainbow_parentheses.vim'
@@ -47,18 +46,14 @@ set history=500
 set nofoldenable
 set fdm=indent
 
-" disable the bell
-set noeb
-set vb
-
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
 set autoread
 
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 "----
 " UI
@@ -173,10 +168,10 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>h <C-W>h
+map <leader>l <C-W>l
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
@@ -188,9 +183,9 @@ map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tr :tabnew<cr>
-map <leader>ty :tabonly<cr>
-map <leader>tg :tabclose<cr>
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
 let g:lasttab = 1
 nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
@@ -217,8 +212,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-	set switchbuf=useopen,usetab,newtab
-	set stal=2
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
 catch
 endtry
 
@@ -265,23 +260,19 @@ imap <C-\> <ESC><leader>ci
 imap <C-v> <ESC>v
 
 "Quick Insert mode
-vmap i xi
-
-"Quick Command
-map ; :
+vmap <C-i> xi
 
 "format the code
 map <C-x>l <ESC>:ClangFormat<CR>
 imap <C-x>l <ESC>:ClangFormat<CR>
+
+nnoremap <space> za
 
 "-----
 " Misc
 "------
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
 
 " strip all trailing whitespace in the current file
 autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -293,40 +284,40 @@ nmap <F7> :call DoOneFileMake()<CR>
 nmap <F8> :call RunFile()<CR>
 nmap <F9> :call DebugFile()<CR>
 function DebugFile()
-	call DoOneFileMake()
-	if len(getqflist()) == 0
-		if &filetype=='c' || &filetype=='cpp'
-			exec "!lldb ./%.o"
-		endif
-	endif
+    call DoOneFileMake()
+    if len(getqflist()) == 0
+        if &filetype=='c' || &filetype=='cpp'
+            exec "!lldb ./%.o"
+        endif
+    endif
 endfunction
 
 function RunFile()
-	call DoOneFileMake()
-	if len(getqflist()) == 0
-		exec "!./%.o"
-	endif
+    call DoOneFileMake()
+    if len(getqflist()) == 0
+        exec "!./%.o"
+    endif
 endfunction
 
 function DoOneFileMake()
-	" if(expand("%:p:h")!=getcwd())
-	" echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
-	" endif
-	exec "w"
-	"call SetCompilation()
+    " if(expand("%:p:h")!=getcwd())
+    " echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
+    " endif
+    exec "w"
+    "call SetCompilation()
 
-	if &filetype=='c'
-		set makeprg=gcc\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
-	elseif &filetype=='cpp'
-		set makeprg=g++\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
-	endif
+    if &filetype=='c'
+        set makeprg=gcc\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
+    elseif &filetype=='cpp'
+        set makeprg=g++\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
+    endif
 
-	exec "silent make\|redraw!"
-	if len(getqflist()) == 0
-		exec "cclose"
-	else
-		exec "copen"
-	endif
+    exec "silent make\|redraw!"
+    if len(getqflist()) == 0
+        exec "cclose"
+    else
+        exec "copen"
+    endif
 endfunction
 
 "------------------
@@ -350,88 +341,83 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
-map , <Plug>(easymotion-s)
+map \ <Plug>(easymotion-s)
 
 "---------
 " Tabline
 "---------
 set tabline=%!MyTabLine()  " custom tab pages line
 function MyTabLine()
-	let s = '' " complete tabline goes here
-	" loop through each tab page
-	for t in range(tabpagenr('$'))
-		" set highlight
-		if t + 1 == tabpagenr()
-			let s .= '%#TabLineSel#'
-		else
-			let s .= '%#TabLine#'
-		endif
-		" set the tab page number (for mouse clicks)
-		let s .= '%' . (t + 1) . 'T'
-		let s .= ' '
-		" set page number string
-		let s .= t + 1 . ' '
-		" get buffer names and statuses
-		let n = ''      "temp string for buffer names while we loop and check buftype
-		let m = 0       " &modified counter
-		let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
-		" loop through each buffer in a tab
-		for b in tabpagebuflist(t + 1)
-			" buffer types: quickfix gets a [Q], help gets [H]{base fname}
-			" others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-			if getbufvar( b, "&buftype" ) == 'help'
-				let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-			elseif getbufvar( b, "&buftype" ) == 'quickfix'
-				let n .= '[Q]'
-			else
-				let n .= pathshorten(bufname(b))
-			endif
-			" check and ++ tab's &modified count
-			if getbufvar( b, "&modified" )
-				let m += 1
-			endif
-			" no final ' ' added...formatting looks better done later
-			if bc > 1
-				let n .= ' '
-			endif
-			let bc -= 1
-		endfor
-		" add modified label [n+] where n pages in tab are modified
-		if m > 0
-			let s .= '[' . m . '+]'
-		endif
-		" select the highlighting for the buffer names
-		" my default highlighting only underlines the active tab
-		" buffer names.
-		if t + 1 == tabpagenr()
-			let s .= '%#TabLineSel#'
-		else
-			let s .= '%#TabLine#'
-		endif
-		" add buffer names
-		if n == ''
-			let s.= '[New]'
-		else
-			let s .= n
-		endif
-		" switch to no underlining and add final space to buffer list
-		let s .= ' '
-	endfor
-	" after the last tab fill with TabLineFill and reset tab page nr
-	let s .= '%#TabLineFill#%T'
-	" right-align the label to close the current tab page
-	if tabpagenr('$') > 1
-		let s .= '%=%#TabLineFill#%999Xclose'
-	endif
-	return s
+    let s = '' " complete tabline goes here
+    " loop through each tab page
+    for t in range(tabpagenr('$'))
+        " set highlight
+        if t + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+        " set the tab page number (for mouse clicks)
+        let s .= '%' . (t + 1) . 'T'
+        let s .= ' '
+        " set page number string
+        let s .= t + 1 . ' '
+        " get buffer names and statuses
+        let n = ''      "temp string for buffer names while we loop and check buftype
+        let m = 0       " &modified counter
+        let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
+        " loop through each buffer in a tab
+        for b in tabpagebuflist(t + 1)
+            " buffer types: quickfix gets a [Q], help gets [H]{base fname}
+            " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+            if getbufvar( b, "&buftype" ) == 'help'
+                let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+            elseif getbufvar( b, "&buftype" ) == 'quickfix'
+                let n .= '[Q]'
+            else
+                let n .= pathshorten(bufname(b))
+            endif
+            " check and ++ tab's &modified count
+            if getbufvar( b, "&modified" )
+                let m += 1
+            endif
+            " no final ' ' added...formatting looks better done later
+            if bc > 1
+                let n .= ' '
+            endif
+            let bc -= 1
+        endfor
+        " add modified label [n+] where n pages in tab are modified
+        if m > 0
+            let s .= '[' . m . '+]'
+        endif
+        " select the highlighting for the buffer names
+        " my default highlighting only underlines the active tab
+        " buffer names.
+        if t + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+        " add buffer names
+        if n == ''
+            let s.= '[New]'
+        else
+            let s .= n
+        endif
+        " switch to no underlining and add final space to buffer list
+        let s .= ' '
+    endfor
+    " after the last tab fill with TabLineFill and reset tab page nr
+    let s .= '%#TabLineFill#%T'
+    " right-align the label to close the current tab page
+    if tabpagenr('$') > 1
+        let s .= '%=%#TabLineFill#%999Xclose'
+    endif
+    return s
 endfunction
 
 :hi TabLineSel ctermfg=white
-map <leader>p :call MacosPaste()<CR>
+" paste
+map <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 map <leader>y :w !pbcopy<CR><CR>
-
-function MacosPaste()
-    exec("set paste")
-    exec("r !pbpaste")
-    exec("set nopaste")
-endfunction
