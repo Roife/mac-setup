@@ -13,7 +13,7 @@ Bundle 'troydm/easytree.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'terryma/vim-multiple-cursors'
+Bundle 'hlissner/vim-multiedit'
 Bundle 'mbbill/undotree'
 Bundle 'repeat.vim'
 Bundle 'tpope/vim-surround'
@@ -23,6 +23,7 @@ Bundle 'rhysd/vim-clang-format'
 Bundle 'SirVer/ultisnips'
 Bundle 'morhetz/gruvbox'
 Bundle 'maxbrunsfeld/vim-emacs-bindings'
+Bundle 'ahw/vim-pbcopy'
 call vundle#end()
 
 imap <C-n> <Down>
@@ -37,6 +38,8 @@ imap <C-p> <Up>
 "au WinLeave * set nocursorline nocursorcolumn
 "au WinEnter * set cursorline cursorcolumn
 
+" mouse operation avalible
+set mouse=a
 " Sets how many lines of history VIM has to remember
 set history=500
 
@@ -54,11 +57,9 @@ filetype indent on
 
 set autoread
 
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
+let mapleader = ","
+let g:mapleader = ","
 
-" set number
-set number
 "----
 " UI
 "----
@@ -349,7 +350,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
-map - <Plug>(easymotion-s)
+map , <Plug>(easymotion-s)
 
 "---------
 " Tabline
@@ -426,3 +427,11 @@ function MyTabLine()
 endfunction
 
 :hi TabLineSel ctermfg=white
+map <leader>p :call MacosPaste()<CR>
+map <leader>y :w !pbcopy<CR><CR>
+
+function MacosPaste()
+    exec("set paste")
+    exec("r !pbpaste")
+    exec("set nopaste")
+endfunction
