@@ -13,7 +13,6 @@ Bundle 'troydm/easytree.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'hlissner/vim-multiedit'
 Bundle 'mbbill/undotree'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-easymotion'
@@ -22,7 +21,6 @@ Bundle 'rhysd/vim-clang-format'
 Bundle 'SirVer/ultisnips'
 Bundle 'morhetz/gruvbox'
 Bundle 'maxbrunsfeld/vim-emacs-bindings'
-Bundle 'ahw/vim-pbcopy'
 call vundle#end()
 
 imap <C-n> <Down>
@@ -110,7 +108,7 @@ set t_vb=
 set tm=500
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+"set foldcolumn=1
 
 "------------------
 " Colors and Fonts
@@ -241,6 +239,10 @@ hi User4 cterm=None ctermfg=250 ctermbg=238
 "------------------
 " Editing mappings
 "------------------
+" paste
+map <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+map <leader>y :w !pbcopy<CR><CR>
+
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -248,19 +250,14 @@ map 0 ^
 vnoremap <C-k> :m '<-2<CR>gv=gv
 vnoremap <C-j> :m '>+1<CR>gv=gv
 
-" fast saving
+" fast leader
 nmap <leader>w :w!<cr>
+nmap <leader>q :q<cr>
 
 " fast comment
 nmap <C-\> <leader>ci
 vmap <C-\> <leader>ci
 imap <C-\> <ESC><leader>ci
-
-" Quick Visual mode
-imap <C-v> <ESC>v
-
-"Quick Insert mode
-vmap <C-i> xi
 
 "format the code
 map <C-x>l <ESC>:ClangFormat<CR>
@@ -418,6 +415,3 @@ function MyTabLine()
 endfunction
 
 :hi TabLineSel ctermfg=white
-" paste
-map <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-map <leader>y :w !pbcopy<CR><CR>
