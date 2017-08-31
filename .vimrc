@@ -23,22 +23,21 @@ Bundle 'morhetz/gruvbox'
 Bundle 'maxbrunsfeld/vim-emacs-bindings'
 call vundle#end()
 
-imap <C-n> <Down>
-imap <C-p> <Up>
 
 "---------
 " General
 "---------
 " hightlight current line/column
-"set cursorline
-"set cursorcolumn
-"au WinLeave * set nocursorline nocursorcolumn
-"au WinEnter * set cursorline cursorcolumn
+set cursorline
+au WinLeave * set nocursorline
+au WinEnter * set cursorline
 
 " mouse operation avalible
 set mouse=a
 " Sets how many lines of history VIM has to remember
 set history=500
+
+set nu
 
 " set folding
 set nofoldenable
@@ -166,10 +165,10 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <leader>j <C-W>j
-map <leader>k <C-W>k
-map <leader>h <C-W>h
-map <leader>l <C-W>l
+map <c-j> <C-W>j
+map <c-k> <C-W>k
+map <c-h> <C-W>h
+map <c-l> <C-W>l
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
@@ -183,7 +182,7 @@ map <leader>h :bprevious<cr>
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
+map <leader>tw :tabclose<cr>
 let g:lasttab = 1
 nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
@@ -239,6 +238,10 @@ hi User4 cterm=None ctermfg=250 ctermbg=238
 "------------------
 " Editing mappings
 "------------------
+"Emacs +
+imap <C-n> <Down>
+imap <C-p> <Up>
+
 " paste
 map <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 map <leader>y :w !pbcopy<CR><CR>
@@ -277,6 +280,10 @@ autocmd BufWritePre <buffer> :%s/\s\+$//e
 "---------------------
 " Compile, Run, Debug
 "---------------------
+" errors
+nmap ] <ESC>:cn<CR>
+nmap [ <ESC>:cp<CR>
+
 nmap <F7> :call DoOneFileMake()<CR>
 nmap <F8> :call RunFile()<CR>
 nmap <F9> :call DebugFile()<CR>
