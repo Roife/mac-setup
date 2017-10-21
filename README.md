@@ -16,3 +16,4 @@ If you want to try, you should fork this repository first, then review these cod
 
 # Need to be done...
 > disable handoff
+> modify keys change

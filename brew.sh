@@ -23,9 +23,8 @@ brew upgrade
 
 # Installing CLI tools
 brew install wget
-brew install clang-format
-brew install pandoc
-brew install graphviz
+#brew install pandoc
+#brew install graphviz
 brew install tmux
 brew install aria2
 #brew install the_silver_searcher
@@ -35,18 +34,19 @@ brew install tree
 brew install cloc
 
 # Installing Cask apps
-brew cask install iina
 brew cask install shadowsocksx-ng
+brew cask install iina
 brew cask install dash
+brew cask install sublime-text
 brew cask install bettertouchtool
 brew cask install launchbar
 brew cask install shortcat
 
+# unclutter
 # qq
 # mathstudio
 # Affinity Photo
 # Affinity Designer
-# Yoink
 
 # Installing Quicklook Plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch betterzipql webpquicklook
