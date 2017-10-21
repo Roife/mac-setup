@@ -12,11 +12,11 @@ sudo -v
 # homebrew settings
 ./brew.sh
 echo "======== brew.sh is finished ========"
-./shell.sh
+sudo ./shell.sh
 echo "======== shell.sh is finished ========"
-./macos.sh
+sudo ./macos.sh
 echo "======== macos.sh is finished ========"
-./rc.sh
+sudo ./rc.sh
 
 
 echo "======== Finish! Please restart now! ========"

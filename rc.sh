@@ -9,7 +9,7 @@ cp ./.wgetrc ~/.wgetrc
 #cp ./.clang-format ~/.clang-format
 cp ./.gitconfig ~/.gitconfig
 cp ./.gitignore ~/.gitignore
-mkdir ~/.aria2
-cp ./aria2.conf ~/.aria2/aria2.config
+#mkdir ~/.aria2
+#cp ./aria2.conf ~/.aria2/aria2.config
 
 ssh-keygen -t rsa -C "roife@outlook.com"
