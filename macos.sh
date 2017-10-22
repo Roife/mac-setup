@@ -129,7 +129,7 @@ defaults -currentHost write -g com.apple.keyboard.modifiermapping.1452-628-0 -ar
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:57:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist # Move focus to the status menus - Control, F8
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:51:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist # Move focus to the window drawer - Command, Option, `
 ## Input Sources
-/usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:60:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
+/usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:60:enabled true" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:60:value:parameters:0 32" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:60:value:parameters:1 49" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:60:value:parameters:2 262144" ~/Library/Preferences/com.apple.symbolichotkeys.plist # Select the previous input source - Control Space
