@@ -2,7 +2,7 @@
 
 # Ask for the administrator password upfront.
 sudo -v
-
+export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 #while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 

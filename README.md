@@ -1,19 +1,21 @@
 # roife's dotfiles
 ## Installation
-Firstly, you should go to `System Preference > Keyboard > Shortcuts` check a any option of them.
+Firstly, check any box in `System Preference > Keyboard > Shortcuts` or some changes for keybindings wouldn't work.
 
-Then run commands below
+If you're a Chinese user, make sure VPN or Shadowsocks works well in terminal.
+
+Run commands below
 
     $ xcode-select --install
     $ git clone https://github.com/Roife/mac-setup
     $ cd mac-setup
     $ ./init.sh
 
-Restart your mac when everything is done.
+Restart after everything has been done.
 
 ## Attention
-If you want to try, you should fork this repository first, then review these code and change things you don't want. Don’t blindly use my settings unless you know what that entails!
+If you want to try, you should fork this repository first, then review these code and changes things you don't want. Don’t blindly use my settings unless you know what that entails!
 
 # Need to be done...
 > disable handoff
-> modify keys change
+> change modify keys
