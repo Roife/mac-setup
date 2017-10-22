@@ -25,7 +25,6 @@ brew install wget
 #brew install pandoc
 #brew install graphviz
 brew install tmux
-brew install aria2
 #brew install the_silver_searcher
 
 # Installing useful tools
@@ -40,6 +39,7 @@ brew cask install sublime-text
 brew cask install bettertouchtool
 brew cask install launchbar
 brew cask install shortcat
+brew cask install contexts
 
 # unclutter
 # qq
