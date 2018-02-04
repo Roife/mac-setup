@@ -33,13 +33,13 @@ brew install cloc
 
 # Installing Cask apps
 brew cask install shadowsocksx-ng
+brew cask install macvim
 brew cask install iina
 brew cask install dash
-brew cask install sublime-text
 brew cask install bettertouchtool
 brew cask install launchbar
 brew cask install shortcat
-brew cask install contexts
+#brew cask install contexts
 
 # unclutter
 # qq
@@ -48,7 +48,7 @@ brew cask install contexts
 # Affinity Designer
 
 # Installing Quicklook Plugins
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch betterzipql webpquicklook
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch webpquicklook
 
 # Remove outdated versions from the cellar.
 brew cleanup
