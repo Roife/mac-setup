@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Ask for the administrator password upfront.
-sudo -v
 export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 #while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -11,12 +10,13 @@ export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087
 
 # homebrew settings
 ./brew.sh
-echo "======== brew.sh is finished ========"
+echo "======== brew.sh has finished ========"
 sudo ./shell.sh
-echo "======== shell.sh is finished ========"
+echo "======== shell.sh has finished ========"
 sudo ./macos.sh
-echo "======== macos.sh is finished ========"
+echo "======== macos.sh has finished ========"
 sudo ./rc.sh
+echo "======== rc.sh has finished ========"
 
 
 echo "======== Finish! Please restart now! ========"

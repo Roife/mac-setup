@@ -18,9 +18,9 @@ Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'rhysd/vim-clang-format'
-Bundle 'SirVer/ultisnips'
 Bundle 'morhetz/gruvbox'
 Bundle 'maxbrunsfeld/vim-emacs-bindings'
+Bundle 'airblade/vim-gitgutter'
 call vundle#end()
 
 
@@ -82,10 +82,8 @@ set ignorecase
 
 " When searching try to be smart about cases
 set smartcase
-
 " Highlight search results
 set hlsearch
-
 " Makes search act like search in modern browsers
 set incsearch
 
@@ -142,8 +140,7 @@ set noswapfile
 "------------------------------
 " Use spaces instead of tabs
 set expandtab
-
-" Be smart when using tabs ;)
+" Be smart when using tabs
 set smarttab
 
 " 1 tab == 4 spaces
@@ -245,6 +242,9 @@ imap <C-p> <Up>
 " paste
 map <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 map <leader>y :w !pbcopy<CR><CR>
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
