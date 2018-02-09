@@ -263,8 +263,8 @@ vmap <C-\> <leader>ci
 imap <C-\> <ESC><leader>ci
 
 "format the code
-map <C-x>l <ESC>:ClangFormat<CR>
-imap <C-x>l <ESC>:ClangFormat<CR>
+"map <C-x>l <ESC>:ClangFormat<CR>
+"imap <C-x>l <ESC>:ClangFormat<CR>
 
 nnoremap <space> za
 

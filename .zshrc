@@ -133,3 +133,4 @@ backup(){
 alias vi='vim'
 alias m='wd'
 alias -s cpp='vim'
+alias rm=trash

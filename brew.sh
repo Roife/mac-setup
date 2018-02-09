@@ -25,6 +25,7 @@ brew install wget
 #brew install pandoc
 #brew install graphviz
 brew install tmux
+brew install trash
 #brew install the_silver_searcher
 
 # Installing useful tools
@@ -33,12 +34,10 @@ brew install cloc
 
 # Installing Cask apps
 brew cask install shadowsocksx-ng
-brew cask install macvim
 brew cask install iina
 brew cask install dash
 brew cask install bettertouchtool
 brew cask install launchbar
-brew cask install shortcat
 #brew cask install contexts
 
 # unclutter
