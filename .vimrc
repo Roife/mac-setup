@@ -3,8 +3,6 @@
 "---------
 set nocompatible
 filetype off
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
@@ -56,7 +54,7 @@ let g:mapleader = "\<Space>"
 " UI
 "----
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set so=6
 
 " Turn on the WiLd menu
 set wildmenu
@@ -266,8 +264,6 @@ imap <C-\> <ESC><leader>ci
 "map <C-x>l <ESC>:ClangFormat<CR>
 "imap <C-x>l <ESC>:ClangFormat<CR>
 
-nnoremap <space> za
-
 "-----
 " Misc
 "------
@@ -345,7 +341,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
-map \ <Plug>(easymotion-s)
+map , <Plug>(easymotion-s)
 
 "---------
 " Tabline

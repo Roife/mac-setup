@@ -21,7 +21,7 @@ brew update
 brew upgrade
 
 # Installing CLI tools
-brew install wget
+brew install screenfetch
 #brew install pandoc
 #brew install graphviz
 brew install tmux
@@ -35,7 +35,7 @@ brew install cloc
 # Installing Cask apps
 brew cask install shadowsocksx-ng
 brew cask install iina
-brew cask install dash
+#brew cask install dash
 brew cask install bettertouchtool
 brew cask install launchbar
 #brew cask install contexts
