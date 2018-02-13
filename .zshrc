@@ -8,7 +8,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="simple"
+ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"
@@ -128,7 +128,7 @@ export GITHUB=~/Documents/github
 backup(){
     cp ~/.gitconfig ~/.gitignore ~/.tmux.conf ~/.vimrc  ~/.zshrc $GITHUB/mac-setup
     #cp -rf ~/.bin $GITHUB/mac-setup
-    cp -rf ~/.vim/template $GITHUB/mac-setup/template
+    cp -rf ~/.vim/template $GITHUB/mac-setup/
 }
 
 alias vi='vim'
