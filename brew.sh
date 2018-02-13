@@ -26,7 +26,7 @@ brew install screenfetch
 #brew install graphviz
 brew install tmux
 brew install trash
-#brew install the_silver_searcher
+brew install the_silver_searcher
 brew install tree
 brew install cloc
 
