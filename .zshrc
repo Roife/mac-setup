@@ -126,8 +126,9 @@ export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087
 
 export GITHUB=~/Documents/github
 backup(){
-    cp ~/.gitconfig ~/.gitignore ~/.tmux.conf ~/.vimrc ~/.wgetrc ~/.zshrc $GITHUB/mac-setup
+    cp ~/.gitconfig ~/.gitignore ~/.tmux.conf ~/.vimrc  ~/.zshrc $GITHUB/mac-setup
     #cp -rf ~/.bin $GITHUB/mac-setup
+    cp -rf ~/.vim/template $GITHUB/mac-setup/template
 }
 
 alias vi='vim'

@@ -11,6 +11,7 @@ cp ./.gitconfig ~/.gitconfig
 cp ./.gitignore ~/.gitignore
 #mkdir ~/.aria2
 #cp ./aria2.conf ~/.aria2/aria2.config
+cp -rf ./template ~/.vim/
 
 ssh-keygen -t rsa -C "roife@outlook.com"
 # replace by youself!

@@ -6,18 +6,21 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-Bundle 'Vundle.vim'
-Bundle 'troydm/easytree.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'mbbill/undotree'
-Bundle 'tpope/vim-surround'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'morhetz/gruvbox'
-Bundle 'maxbrunsfeld/vim-emacs-bindings'
-Bundle 'zefei/vim-wintabs'
+Plugin 'gmarik/vundle'
+
+Plugin 'troydm/easytree.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'mbbill/undotree'
+Plugin 'tpope/vim-surround'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'maxbrunsfeld/vim-emacs-bindings'
+Plugin 'zefei/vim-wintabs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'terryma/vim-expand-region'
 call vundle#end()
 
 
@@ -176,6 +179,7 @@ map <leader>h :bprevious<cr>
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+au BufNewFile *.cpp 0r ~/.vim/template/cpp-oi.cpp
 
 "-------------
 " Status line
@@ -301,4 +305,17 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
 map , <Plug>(easymotion-s)
+
+" Wintabs
 let g:wintabs_ui_buffer_name_format = ' [%n]%t '
+
+"ctrlp
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" expand
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
