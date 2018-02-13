@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Bundle 'Vundle.vim'
-"Bundle 'troydm/easytree.vim'
+Bundle 'troydm/easytree.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jiangmiao/auto-pairs'
@@ -282,8 +282,8 @@ endfunction
 "------------------
 " Plugin Settings
 "------------------
-"map <F1> :EasyTreeToggle<cr>
-"imap <F1> <C-o>:EasyTreeToggle<cr>
+map <F1> :EasyTreeToggle<cr>
+imap <F1> <C-o>:EasyTreeToggle<cr>
 
 " Undotree
 map <F2> :UndotreeToggle<cr>
