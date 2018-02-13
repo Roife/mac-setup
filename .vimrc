@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Bundle 'Vundle.vim'
-Bundle 'troydm/easytree.vim'
+"Bundle 'troydm/easytree.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'jiangmiao/auto-pairs'
@@ -15,10 +15,9 @@ Bundle 'mbbill/undotree'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'rhysd/vim-clang-format'
 Bundle 'morhetz/gruvbox'
 Bundle 'maxbrunsfeld/vim-emacs-bindings'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'zefei/vim-wintabs'
 call vundle#end()
 
 
@@ -174,41 +173,6 @@ map <leader>ba :bufdo bd<cr>
 map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tw :tabclose<cr>
-let g:lasttab = 1
-nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
-nnoremap H gT
-nnoremap L gt
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers
-try
-    set switchbuf=useopen,usetab,newtab
-    set stal=2
-catch
-endtry
-
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -244,21 +208,16 @@ map <leader>y :w !pbcopy<CR><CR>
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
 " Move a line of text
 vnoremap <C-k> :m '<-2<CR>gv=gv
 vnoremap <C-j> :m '>+1<CR>gv=gv
-
-" fast leader
-nmap <leader>w :w!<cr>
-nmap <leader>q :q<cr>
 
 " fast comment
 nmap <C-\> <leader>ci
 vmap <C-\> <leader>ci
 imap <C-\> <ESC><leader>ci
+
+nmap <leader>, :ls
 
 "format the code
 "map <C-x>l <ESC>:ClangFormat<CR>
@@ -323,8 +282,8 @@ endfunction
 "------------------
 " Plugin Settings
 "------------------
-map <F1> :EasyTreeToggle<cr>
-imap <F1> <C-o>:EasyTreeToggle<cr>
+"map <F1> :EasyTreeToggle<cr>
+"imap <F1> <C-o>:EasyTreeToggle<cr>
 
 " Undotree
 map <F2> :UndotreeToggle<cr>
@@ -342,79 +301,4 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
 map , <Plug>(easymotion-s)
-
-"---------
-" Tabline
-"---------
-set tabline=%!MyTabLine()  " custom tab pages line
-function MyTabLine()
-    let s = '' " complete tabline goes here
-    " loop through each tab page
-    for t in range(tabpagenr('$'))
-        " set highlight
-        if t + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (t + 1) . 'T'
-        let s .= ' '
-        " set page number string
-        let s .= t + 1 . ' '
-        " get buffer names and statuses
-        let n = ''      "temp string for buffer names while we loop and check buftype
-        let m = 0       " &modified counter
-        let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
-        " loop through each buffer in a tab
-        for b in tabpagebuflist(t + 1)
-            " buffer types: quickfix gets a [Q], help gets [H]{base fname}
-            " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-            if getbufvar( b, "&buftype" ) == 'help'
-                let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-            elseif getbufvar( b, "&buftype" ) == 'quickfix'
-                let n .= '[Q]'
-            else
-                let n .= pathshorten(bufname(b))
-            endif
-            " check and ++ tab's &modified count
-            if getbufvar( b, "&modified" )
-                let m += 1
-            endif
-            " no final ' ' added...formatting looks better done later
-            if bc > 1
-                let n .= ' '
-            endif
-            let bc -= 1
-        endfor
-        " add modified label [n+] where n pages in tab are modified
-        if m > 0
-            let s .= '[' . m . '+]'
-        endif
-        " select the highlighting for the buffer names
-        " my default highlighting only underlines the active tab
-        " buffer names.
-        if t + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        " add buffer names
-        if n == ''
-            let s.= '[New]'
-        else
-            let s .= n
-        endif
-        " switch to no underlining and add final space to buffer list
-        let s .= ' '
-    endfor
-    " after the last tab fill with TabLineFill and reset tab page nr
-    let s .= '%#TabLineFill#%T'
-    " right-align the label to close the current tab page
-    if tabpagenr('$') > 1
-        let s .= '%=%#TabLineFill#%999Xclose'
-    endif
-    return s
-endfunction
-
-:hi TabLineSel ctermfg=white
+let g:wintabs_ui_buffer_name_format = ' [%n]%t '
