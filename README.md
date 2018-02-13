@@ -9,7 +9,7 @@ Run commands below
     $ xcode-select --install
     $ git clone https://github.com/Roife/mac-setup
     $ cd mac-setup
-    $ ./init.sh
+    $ sudo ./init.sh
 
 Restart after everything has been done.
 

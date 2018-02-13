@@ -7,7 +7,7 @@
 #while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # use zsh
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
 
 # Installing Oh-My-Zsh
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

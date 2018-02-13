@@ -8,15 +8,14 @@ export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087
 # Install command line tool
 # xcode-select --install
 
-# homebrew settings
-./brew.sh
+sudo ./rc.sh
+echo "======== rc.sh has finished ========"
+sudo ./brew.sh
 echo "======== brew.sh has finished ========"
 sudo ./shell.sh
 echo "======== shell.sh has finished ========"
 sudo ./macos.sh
 echo "======== macos.sh has finished ========"
-sudo ./rc.sh
-echo "======== rc.sh has finished ========"
-
+sudo chown -R roife ~
 
 echo "======== Finish! Please restart now! ========"
