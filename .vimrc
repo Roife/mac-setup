@@ -6,7 +6,10 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-Plugin 'gmarik/vundle'
+
+Plugin 'morhetz/gruvbox'
+
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'troydm/easytree.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -16,13 +19,12 @@ Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'morhetz/gruvbox'
 Plugin 'maxbrunsfeld/vim-emacs-bindings'
 Plugin 'zefei/vim-wintabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-expand-region'
+Plugin 'w0rp/ale'
 call vundle#end()
-
 
 "---------
 " General
@@ -315,7 +317,15 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+"<Leader>b显示缓冲区文件，并可通过序号进行跳转
+nmap <Leader>b :CtrlPBuffer<CR>
 
 " expand
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
+
+"ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
