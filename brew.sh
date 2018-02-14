@@ -33,6 +33,7 @@ brew install fzf
 brew install ranger
 brew install tig
 brew install htop
+brew install mas
 
 # Installing Cask apps
 #brew cask install shadowsocksx-ng
