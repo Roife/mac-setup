@@ -12,7 +12,7 @@
 # Install if we don't have it
 if test ! $(which brew); then
   echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  sudo ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -29,6 +29,8 @@ brew install trash
 brew install the_silver_searcher
 brew install tree
 brew install cloc
+brew install fzf
+brew install ranger
 
 # Installing Cask apps
 #brew cask install shadowsocksx-ng
@@ -49,3 +51,6 @@ brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch 
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+ranger --copy-config=all
+/usr/local/opt/fzf/install
