@@ -52,7 +52,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git web-search zsh-syntax-highlighting colored-man-pages zsh-autosuggestions extract wd)
+plugins=(git web-search zsh-syntax-highlighting colored-man-pages zsh-autosuggestions extract z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,6 +137,6 @@ weather() {
 
 alias vi='vim'
 alias m='wd'
-alias -s cpp='vim'
+alias v='vim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -31,6 +31,8 @@ brew install tree
 brew install cloc
 brew install fzf
 brew install ranger
+brew install tig
+brew install htop
 
 # Installing Cask apps
 #brew cask install shadowsocksx-ng
@@ -40,12 +42,6 @@ brew cask install bettertouchtool
 brew cask install launchbar
 #brew cask install contexts
 
-# unclutter
-# qq
-# mathstudio
-# Affinity Photo
-# Affinity Designer
-
 # Installing Quicklook Plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch webpquicklook
 
@@ -54,3 +50,8 @@ brew cleanup
 
 ranger --copy-config=all
 /usr/local/opt/fzf/install
+
+# mas
+mas install 445189367
+mas install 829912893
+mas install 1127253508
