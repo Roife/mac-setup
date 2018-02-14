@@ -131,6 +131,12 @@ backup(){
     cp -rf ~/.vim/template $GITHUB/mac-setup/
 }
 
+weather() {
+    curl http://wttr.in/$1
+}
+
 alias vi='vim'
 alias m='wd'
 alias -s cpp='vim'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

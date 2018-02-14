@@ -13,6 +13,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'troydm/easytree.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'mhinz/vim-startify'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mbbill/undotree'
