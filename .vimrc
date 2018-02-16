@@ -6,7 +6,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-
 Plugin 'morhetz/gruvbox'
 
 Plugin 'VundleVim/Vundle.vim'
@@ -16,15 +15,19 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mhinz/vim-startify'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'kana/vim-textobj-user'
 Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'maxbrunsfeld/vim-emacs-bindings'
-Plugin 'zefei/vim-wintabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'w0rp/ale'
+Plugin 'ap/vim-buftabline'
+
+Plugin 'glts/vim-textobj-comment'
+Plugin 'jceb/vim-textobj-uri'
 call vundle#end()
 
 "---------
@@ -85,9 +88,7 @@ set ignorecase
 
 " When searching try to be smart about cases
 set smartcase
-" Highlight search results
 set hlsearch
-" Makes search act like search in modern browsers
 set incsearch
 
 " Don't redraw while executing macros (good performance config)
@@ -95,10 +96,7 @@ set lazyredraw
 
 " For regular expressions turn magic on
 set magic
-
-" Show matching brackets when text indicator is over them
 set showmatch
-" How many tenths of a second to blink when matching brackets
 set mat=2
 
 " No annoying sound on errors
@@ -115,9 +113,7 @@ set tm=500
 "------------------
 " Enable syntax highlighting
 syntax enable
-
 colorscheme gruvbox
-
 set background=dark
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -190,11 +186,10 @@ au BufNewFile *.cpp 0r ~/.vim/template/cpp-oi.cpp
 " Always show the status line
 set laststatus=2
 
-set statusline=%<%1*\ [%n]\ \%*
+set statusline=%<%1*[%n]\%*
 set statusline+=%2*\ %F
 set statusline+=%=%3*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-8.(%l:%c%V%)%*
 set statusline+=%4*\ %P\ %*
-"default bg for statusline is 236 in space-vim-dark
 hi User1 cterm=None ctermfg=214 ctermbg=242
 "hi User2 cterm=None ctermfg=251 ctermbg=240
 hi User3 cterm=bold ctermfg=100 ctermbg=236
@@ -229,6 +224,9 @@ nmap <leader>, :ls
 "format the code
 "map <C-x>l <ESC>:ClangFormat<CR>
 "imap <C-x>l <ESC>:ClangFormat<CR>
+
+imap <C-i> <ESC>:bn<CR>i
+nmap <C-i> :bn<CR>
 
 "-----
 " Misc
@@ -295,7 +293,7 @@ imap <F1> <C-o>:EasyTreeToggle<cr>
 " Undotree
 map <F2> :UndotreeToggle<cr>
 imap <F2> <C-o>:UndotreeToggle<cr>
-set undodir=~/.undodir/
+set undodir=~/.vim/undodir/
 set undofile
 
 " rainbow_parentheses
@@ -309,10 +307,8 @@ au Syntax * RainbowParenthesesLoadBraces
 "Easy Motion
 map , <Plug>(easymotion-s)
 
-" Wintabs
-let g:wintabs_ui_buffer_name_format = ' [%n]%t '
-
 "ctrlp
+let g:ctrlp_map = '<F3>'
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -327,6 +323,122 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 "ale
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
+let g:ale_sign_error = '✹'
+let g:ale_sign_warning = '✹'
+let g:ale_completion_enabled=1
+
+
+" Text objects
+" line
+call textobj#user#plugin('line', {
+\   '-': {
+\     'select-a-function': 'CurrentLineA',
+\     'select-a': 'al',
+\     'select-i-function': 'CurrentLineI',
+\     'select-i': 'il',
+\   },
+\ })
+
+function! CurrentLineA()
+  normal! 0
+  let head_pos = getpos('.')
+  normal! $
+  let tail_pos = getpos('.')
+  return ['v', head_pos, tail_pos]
+endfunction
+
+function! CurrentLineI()
+  normal! ^
+  let head_pos = getpos('.')
+  normal! g_
+  let tail_pos = getpos('.')
+  let non_blank_char_exists_p = getline('.')[head_pos[2] - 1] !~# '\s'
+  return
+  \ non_blank_char_exists_p
+  \ ? ['v', head_pos, tail_pos]
+  \ : 0
+endfunction
+
+
+call textobj#user#plugin('entire', {
+\      '-': {
+\        'select-a': 'ae',  'select-a-function': 'EntireI',
+\        'select-i': 'ie',  'select-i-function': 'EntireA'
+\      },
+\    })
+
+function! EntireA()
+  normal! m'
+  keepjumps normal! gg0
+  let start_pos = getpos('.')
+  keepjumps normal! G$
+  let end_pos = getpos('.')
+  return ['V', start_pos, end_pos]
+endfunction
+
+
+function! EntireI()  "{{{2
+  normal! m'
+  keepjumps normal! gg0
+  call search('^.', 'cW')
+  let start_pos = getpos('.')
+  keepjumps normal! G$
+  call search('^.', 'bcW')
+  normal! $
+  let end_pos = getpos('.')
+  return ['V', start_pos, end_pos]
+endfunction
+
+
+call textobj#user#plugin('latex', {
+\   'environment': {
+\     '*pattern*': ['\\begin{[^}]\+}.*\n\s*', '\n^\s*\\end{[^}]\+}.*$'],
+\     'select-a': 'ae',
+\     'select-i': 'ie',
+\   },
+\  'bracket-math': {
+\     '*pattern*': ['\\\[', '\\\]'],
+\     'select-a': 'ab',
+\     'select-i': 'ib',
+\   },
+\  'paren-math': {
+\     '*pattern*': ['\\(', '\\)'],
+\     'select-a': 'a\',
+\     'select-i': 'i\',
+\   },
+\  'dollar-math-a': {
+\     '*pattern*': '[$][^$]*[$]',
+\     'select': 'a$',
+\   },
+\  'dollar-math-i': {
+\     '*pattern*': '[$]\zs[^$]*\ze[$]',
+\     'select': 'i$',
+\   },
+\  'quote': {
+\     '*pattern*': ['`', "'"],
+\     'select-a': 'aq',
+\     'select-i': 'iq',
+\   },
+\  'double-quote': {
+\     '*pattern*': ['``', "''"],
+\     'select-a': 'aQ',
+\     'select-i': 'iQ',
+\   },
+\ })
+
+
+" Default settings. (NOTE: Remove comments in dictionary before sourcing)
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'i''' :0,
+      \ 'i]'  :1,
+      \ 'ib'  :1,
+      \ 'iB'  :1,
+      \ 'il'  :0,
+      \ 'ip'  :0,
+      \ 'ie'  :0,
+      \ 'iu'  :0,
+      \ 'ic'  :0,
+      \ }

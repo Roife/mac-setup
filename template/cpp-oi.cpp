@@ -7,6 +7,7 @@
 #define lop(i, b, e) for(int i=b; i<=e; ++i)
 #define pol(i, b, e) for(int i=b; i>=e; --i)
 #define file(x) freopen(x".in", "r", stdin); freopen(x".out", "w", stdout);
+#define test(x) std::cout << #x << " = " << x << std::endl;
 #define mset(x) memset(x, 0, sizeof x);
 typedef long long LL;
 const int INF = 0x3f3f3f3f;
