@@ -41,6 +41,8 @@ brew install mas
 #brew cask install dash
 brew cask install bettertouchtool
 brew cask install launchbar
+brew cask install shortcat
+brew cask install focus
 #brew cask install contexts
 
 # Installing Quicklook Plugins
