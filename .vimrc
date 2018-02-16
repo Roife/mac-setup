@@ -2,33 +2,29 @@
 " Vundle
 "---------
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
 
-call vundle#begin()
-Plugin 'morhetz/gruvbox'
+    Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
+    Plug 'scrooloose/nerdcommenter', {'on': 'UndotreeToggle'}
+    Plug 'mhinz/vim-startify'
+    Plug 'bronson/vim-trailing-whitespace'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'kana/vim-textobj-user'
+    Plug 'mbbill/undotree'
+    Plug 'tpope/vim-surround'
+    Plug 'Lokaltog/vim-easymotion'
+    Plug 'kien/rainbow_parentheses.vim'
+    Plug 'maxbrunsfeld/vim-emacs-bindings'
+    Plug 'kien/ctrlp.vim'
+    Plug 'terryma/vim-expand-region'
+    Plug 'w0rp/ale'
+    Plug 'ap/vim-buftabline'
 
-Plugin 'VundleVim/Vundle.vim'
+    Plug 'glts/vim-textobj-comment'
+    Plug 'jceb/vim-textobj-uri'
 
-Plugin 'troydm/easytree.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mhinz/vim-startify'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'kana/vim-textobj-user'
-Plugin 'mbbill/undotree'
-Plugin 'tpope/vim-surround'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'maxbrunsfeld/vim-emacs-bindings'
-Plugin 'kien/ctrlp.vim'
-Plugin 'terryma/vim-expand-region'
-Plugin 'w0rp/ale'
-Plugin 'ap/vim-buftabline'
-
-Plugin 'glts/vim-textobj-comment'
-Plugin 'jceb/vim-textobj-uri'
-call vundle#end()
+call plug#end()
 
 "---------
 " General
