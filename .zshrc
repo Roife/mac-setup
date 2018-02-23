@@ -129,7 +129,6 @@ backup(){
     cp ~/.gitconfig ~/.gitignore ~/.tmux.conf ~/.vimrc  ~/.zshrc $GITHUB/mac-setup
     #cp -rf ~/.bin $GITHUB/mac-setup
     cp -rf ~/.vim/template $GITHUB/mac-setup/
-    cp -rf ~/.config/ranger $GITHUB/mac-setup/
 }
 
 weather() {

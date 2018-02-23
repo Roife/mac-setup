@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Lokaltog/vim-easymotion'
     Plug 'kien/rainbow_parentheses.vim'
     Plug 'maxbrunsfeld/vim-emacs-bindings'
-    Plug 'kien/ctrlp.vim'
+    Plug 'kien/ctrlp.vim', {'on': 'CtrlP'}
     Plug 'terryma/vim-expand-region'
     Plug 'w0rp/ale'
     Plug 'ap/vim-buftabline'
@@ -304,7 +304,7 @@ au Syntax * RainbowParenthesesLoadBraces
 map , <Plug>(easymotion-s)
 
 "ctrlp
-let g:ctrlp_map = '<F3>'
+map <F3> :CtrlP<cr>
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
