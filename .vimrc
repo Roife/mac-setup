@@ -6,12 +6,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
 
     Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
-    Plug 'scrooloose/nerdcommenter', {'on': 'UndotreeToggle'}
+    Plug 'scrooloose/nerdcommenter'
     Plug 'mhinz/vim-startify'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'jiangmiao/auto-pairs'
     Plug 'kana/vim-textobj-user'
-    Plug 'mbbill/undotree'
+    Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     Plug 'tpope/vim-surround'
     Plug 'Lokaltog/vim-easymotion'
     Plug 'kien/rainbow_parentheses.vim'
