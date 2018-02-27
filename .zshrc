@@ -8,7 +8,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="simple"
+ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"
@@ -122,7 +122,7 @@ run(){
 #    find $1 -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 #}
 
-export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
+#export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
 
 export GITHUB=~/Documents/github
 backup(){
