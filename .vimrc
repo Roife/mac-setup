@@ -187,10 +187,7 @@ set statusline+=%2*\ %F
 set statusline+=%=%3*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-8.(%l:%c%V%)%*
 set statusline+=%4*\ %P\ %*
 hi User1 cterm=None ctermfg=214 ctermbg=242
-"hi User2 cterm=None ctermfg=251 ctermbg=240
-hi User3 cterm=bold ctermfg=100 ctermbg=236
-hi User4 cterm=None ctermfg=250 ctermbg=238
-"hi User5 cterm=None ctermfg=249 ctermbg=240
+hi User3 cterm=None ctermfg=250 ctermbg=238
 
 "------------------
 " Editing mappings
@@ -214,15 +211,6 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 nmap <C-\> <leader>ci
 vmap <C-\> <leader>ci
 imap <C-\> <ESC><leader>ci
-
-nmap <leader>, :ls
-
-"format the code
-"map <C-x>l <ESC>:ClangFormat<CR>
-"imap <C-x>l <ESC>:ClangFormat<CR>
-
-imap <C-i> <ESC>:bn<CR>i
-nmap <C-i> :bn<CR>
 
 "-----
 " Misc
@@ -260,11 +248,7 @@ function RunFile()
 endfunction
 
 function DoOneFileMake()
-    " if(expand("%:p:h")!=getcwd())
-    " echohl WarningMsg | echo "Fail to make! This file is not in the current dir! Press redirect to the dir of this file."
-    " endif
     exec "w"
-    "call SetCompilation()
 
     if &filetype=='c'
         set makeprg=gcc\ %\ -o\ %.o\ -g\ -lstdc++\ -Wall
@@ -310,8 +294,6 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
-"<Leader>b显示缓冲区文件，并可通过序号进行跳转
-nmap <Leader>b :CtrlPBuffer<CR>
 
 " expand
 vmap v <Plug>(expand_region_expand)
