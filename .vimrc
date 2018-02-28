@@ -3,7 +3,7 @@
 "---------
 set nocompatible
 call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
+    Plug 'ajh17/Spacegray.vim'
 
     Plug 'troydm/easytree.vim', {'on': 'EasyTreeToggle'}
     Plug 'scrooloose/nerdcommenter'
@@ -108,9 +108,8 @@ set tm=500
 " Colors and Fonts
 "------------------
 " Enable syntax highlighting
-syntax enable
-colorscheme gruvbox
-set background=dark
+syntax on
+colorscheme spacegray
 
 " Set utf8 as standard encoding and en_US as the standard language
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
@@ -420,3 +419,4 @@ let g:expand_region_text_objects = {
       \ 'iu'  :0,
       \ 'ic'  :0,
       \ }
+
