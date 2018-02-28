@@ -138,5 +138,6 @@ weather() {
 alias vi='vim'
 alias m='wd'
 alias v='vim'
+alias rf='trash'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

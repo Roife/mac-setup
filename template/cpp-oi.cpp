@@ -7,8 +7,9 @@
 #define lop(i, b, e) for(int i=b; i<=e; ++i)
 #define pol(i, b, e) for(int i=b; i>=e; --i)
 #define file(x) freopen(x".in", "r", stdin); freopen(x".out", "w", stdout);
-#define test(x) std::cout << #x << " = " << x << std::endl;
+#define dbg(x) cerr << "* DEBUG(" << __LINE__ << ") " << #x << ": " << x << endl;
 #define mset(x) memset(x, 0, sizeof x);
+using namespace std;
 typedef long long LL;
 const int INF = 0x3f3f3f3f;
 
@@ -20,5 +21,5 @@ int read() {
 }
 
 int main() {
-    return 0;
+
 }
