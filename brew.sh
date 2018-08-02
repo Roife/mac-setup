@@ -21,19 +21,19 @@ brew update
 brew upgrade
 
 # Installing CLI tools
-brew install screenfetch
+#brew install screenfetch
 #brew install pandoc
 #brew install graphviz
-brew install tmux
-brew install trash
-brew install the_silver_searcher
+#brew install tmux
+#brew install trash
+#brew install the_silver_searcher
 brew install tree
 brew install cloc
-brew install fzf
-brew install ranger
-brew install tig
-brew install htop
-brew install mas
+#brew install fzf
+#brew install ranger
+#brew install tig
+#brew install htop
+#brew install mas
 
 # Installing Cask apps
 #brew cask install shadowsocksx-ng
@@ -41,8 +41,8 @@ brew install mas
 #brew cask install dash
 brew cask install bettertouchtool
 brew cask install launchbar
-brew cask install shortcat
-brew cask install focus
+#brew cask install shortcat
+#brew cask install focus
 #brew cask install contexts
 
 # Installing Quicklook Plugins
@@ -51,10 +51,10 @@ brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch 
 # Remove outdated versions from the cellar.
 brew cleanup
 
-ranger --copy-config=all
-/usr/local/opt/fzf/install
+#ranger --copy-config=all
+#/usr/local/opt/fzf/install
 
 # mas
-mas install 445189367
-mas install 829912893
-mas install 1127253508
+#mas install 445189367
+#mas install 829912893
+#mas install 1127253508
