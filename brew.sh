@@ -29,6 +29,7 @@ brew upgrade
 #brew install the_silver_searcher
 brew install tree
 brew install cloc
+brew install pngpaste
 #brew install fzf
 #brew install ranger
 #brew install tig
