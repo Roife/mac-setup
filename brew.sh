@@ -18,6 +18,7 @@ brew install ripgrep
 
 # Install for zsh
 brew install zsh-syntax-highlighting
+brew install zsh-autosuggestions
 
 # Install emacs
 brew tap d12frosted/emacs-plus

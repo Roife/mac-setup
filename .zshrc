@@ -4,16 +4,18 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # case-insensitive 
 autoload -U compinit
 compinit
 
-# auto-cd
+# cd folder without "cd"
 setopt autocd
-
-# PS
-autoload -U colors && colors
-PS1="%{$fg[blue]%}# %{$fg[yellow]%}%~
-%{$fg[red]%}$%{$reset_color%} "
 
 # highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# auto-suggestion
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# PS
+autoload -U colors && colors
+PS1="%{$fg[blue]%}> %{$fg[cyan]%}%n %{$reset_color%}@ %{$fg[yellow]%}%m %{$reset_color%}: %{$fg[green]%}%~%(?.. %{$fg[red]%}(%?%)) %{$reset_color%}[%t]
+%{$fg[blue]%}$ %{$reset_color%}"
 
 # history
 HISTFILE=~/.histfile
