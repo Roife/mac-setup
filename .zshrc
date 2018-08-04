@@ -1,5 +1,6 @@
 # auto-completion
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}" # colors for ls
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # case-insensitive when completion with tab
 autoload -U compinit
 compinit
 
