@@ -14,7 +14,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # PS
 autoload -U colors && colors
-PS1="%{$fg[blue]%}> %{$fg[cyan]%}%n %{$reset_color%}@ %{$fg[yellow]%}%m %{$reset_color%}: %{$fg[green]%}%~%(?.. %{$fg[red]%}(%?%)) %{$reset_color%}[%t]
+PS1="%{$fg[blue]%}ζ %{$fg[cyan]%}%n%{$reset_color%}|%{$fg[yellow]%}%m%{$reset_color%}: %{$fg[green]%}%~ %{$reset_color%}[%t]%(?..%{$fg[red]%} #%?)
 %{$fg[blue]%}$ %{$reset_color%}"
 
 # history
