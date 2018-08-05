@@ -26,7 +26,7 @@ setopt appendhistory
 # alias
 alias l='ls -laG'
 alias grep='grep --color'
-alias ec='emacsclient'
+alias ec='emacsclient -n'
 
 #alias-git
 alias g='git'
