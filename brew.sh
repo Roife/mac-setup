@@ -15,6 +15,7 @@ brew install pandoc
 brew install tree
 brew install cloc
 brew install ripgrep
+brew install gnuplot
 
 # Install for zsh
 brew install zsh-syntax-highlighting
@@ -22,7 +23,7 @@ brew install zsh-autosuggestions
 
 # Install emacs
 brew tap d12frosted/emacs-plus
-brew install emacs-plus
+brew install emacs-plus --without-spacemacs-icon
 
 # Installing Cask apps
 brew cask install bettertouchtool
