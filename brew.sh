@@ -15,7 +15,10 @@ brew install pandoc
 brew install tree
 brew install cloc
 brew install ripgrep
+
 brew install gnuplot
+brew install graphviz
+brew install python3
 
 # Install for zsh
 brew install zsh-syntax-highlighting
@@ -26,7 +29,6 @@ brew tap d12frosted/emacs-plus
 brew install emacs-plus --without-spacemacs-icon
 
 # Installing Cask apps
-brew cask install bettertouchtool
 brew cask install launchbar
 
 # Installing Quicklook Plugins
