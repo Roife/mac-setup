@@ -11,6 +11,5 @@ echo "======== brew.sh has finished ========"
 echo "======== shell.sh has finished ========"
 ./macos.sh
 echo "======== macos.sh has finished ========"
-sudo chown -R roife ~
 
 echo "======== Finish! Please restart now! ========"
