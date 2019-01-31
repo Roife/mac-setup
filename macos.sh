@@ -19,7 +19,7 @@ defaults write com.apple.menuextra.clock DateFormat -string H:mm
 defaults write -globalDomain AppleInterfaceStyle -string "Dark"
 
 # stop using guest account
-sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+#sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName "roife-mbp"
@@ -61,45 +61,45 @@ defaults write -globalDomain CGDisableCursorLocationMagnification -bool true
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Turn off keyboard illumination when computer is not used for 5 minutes
 defaults write com.apple.BezelServices kDimTime -int 10
 
 # Setting Trackpad Gesture
-#defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 1
-#defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
-#defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
-#defaults write com.apple.AppleMultitouchTrackpad DragLock -int 0
-#defaults write com.apple.AppleMultitouchTrackpad Dragging -int 0
-#defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
-#defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -int 0
-#defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadHandResting -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadHorizScroll -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadScroll -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 0
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
-#defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 1
-#defaults write com.apple.AppleMultitouchTrackpad UserPreferences -int 1
+defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 1
+defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
+defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+defaults write com.apple.AppleMultitouchTrackpad DragLock -int 0
+defaults write com.apple.AppleMultitouchTrackpad Dragging -int 0
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
+defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -int 0
+defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadHandResting -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadHorizScroll -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadScroll -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 1
+defaults write com.apple.AppleMultitouchTrackpad UserPreferences -int 1
 
 # Set Trackpad Speed
-#defaults write -g com.apple.trackpad.scaling 5
+defaults write -g com.apple.trackpad.scaling 5
 
 # Set Key Repeat
 defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
