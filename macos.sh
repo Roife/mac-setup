@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+set -x
 
-# Ask for the administrator password upfront.
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until the script has finished.
-#while true do sudo -n true sleep 60 kill -0 "$$" || exit done 2>/dev/null &
+if [[ -z "${CI}" ]]; then
+  sudo -v # Ask for the administrator password upfront
+  # Keep-alive: update existing `sudo` time stamp until script has finished
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -61,45 +61,45 @@ defaults write -globalDomain CGDisableCursorLocationMagnification -bool true
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Turn off keyboard illumination when computer is not used for 5 minutes
 defaults write com.apple.BezelServices kDimTime -int 10
 
 # Setting Trackpad Gesture
-defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 1
-defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
-defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
-defaults write com.apple.AppleMultitouchTrackpad DragLock -int 0
-defaults write com.apple.AppleMultitouchTrackpad Dragging -int 0
-defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
-defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -int 0
-defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0
-defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
-defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
-defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
-defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
-defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
-defaults write com.apple.AppleMultitouchTrackpad TrackpadHandResting -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadHorizScroll -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadScroll -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 0
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
-defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1
-defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
-defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 0
-defaults write com.apple.AppleMultitouchTrackpad UserPreferences -int 1
+#defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 1
+#defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 1
+#defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+#defaults write com.apple.AppleMultitouchTrackpad DragLock -int 0
+#defaults write com.apple.AppleMultitouchTrackpad Dragging -int 0
+#defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
+#defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -int 0
+#defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadHandResting -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadHorizScroll -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadScroll -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 0
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1
+#defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 0
+#defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 1
+#defaults write com.apple.AppleMultitouchTrackpad UserPreferences -int 1
 
 # Set Trackpad Speed
-defaults write -g com.apple.trackpad.scaling 1
+#defaults write -g com.apple.trackpad.scaling 5
 
 # Set Key Repeat
 defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
@@ -110,8 +110,8 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 defaults -currentHost write -g com.apple.keyboard.modifiermapping.1452-628-0 -array "<dict><key>HIDKeyboardModifierMappingSrc</key><integer>30064771129</integer><key>HIDKeyboardModifierMappingDst</key><integer>30064771296</integer></dict>"
 
 # Set Key Shortcut
-# /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
-# /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:IconViewSettings:enabled false"
+#/usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
+#/usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:IconViewSettings:enabled false"
 ## launchpad & dock
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:52:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist # Turn Dock Hiding On/Off - Command, Option, D
 ## mission control
@@ -183,31 +183,10 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Show item info to the right of the icons on the desktop?
 /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
 
-# Enable snap-to-grid for icons on the desktop and in other icon views?
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+# defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-# Show the ~/Library folder
-chflags nohidden ~/Library
-
-###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
-
-# Privacy: don’t send search queries to Apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
-# Set Safari’s home page to `about:blank` for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
-
-# Enable “Do Not Track”
-defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################

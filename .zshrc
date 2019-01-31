@@ -28,7 +28,7 @@ alias l='ls -laG'
 alias grep='grep --color'
 alias ec='emacsclient -n'
 
-#alias-git
+# alias-git
 alias g='git'
 alias ga='git add'
 alias gc='git commit'

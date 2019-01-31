@@ -25,11 +25,13 @@ brew install zsh-syntax-highlighting
 brew install zsh-autosuggestions
 
 # Install emacs
-brew tap d12frosted/emacs-plus
-brew install emacs-plus --without-spacemacs-icon
+# brew tap d12frosted/emacs-plus
+# brew install emacs-plus --without-spacemacs-icon
 
 # Installing Cask apps
 brew cask install launchbar
+brew cask install calibre
+brew cask install kindle-comic-converter
 
 # Installing Quicklook Plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch webpquicklook

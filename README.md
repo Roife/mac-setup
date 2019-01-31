@@ -19,4 +19,6 @@ Restart after everything has been done!
 If you want to try, you should fork this repository first, then review these code and changes things you don't want. Don’t blindly use my settings unless you know what that entails!
 
 # Need to be done...
-> change modify keys
+> safari
+> trackpad
+
