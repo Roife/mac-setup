@@ -11,16 +11,16 @@ setopt autocd
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # auto-suggestion
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# z
+source /usr/local/etc/profile.d/z.sh
 
 # PS
-autoload -U colors && colors
-PS1="%{$fg[blue]%}○ %{$fg[green]%}%~ | %{$fg[cyan]%}%n%{$reset_color%}\%{$fg[yellow]%}%m%{$reset_color%} %{$reset_color%}[%t]%(?..%{$fg[red]%} #%?)
-%{$fg[blue]%}  $ %{$reset_color%}"
+PS1="%F{135}%n%f@%F{166}%m%f %F{118}%~%f %# "
 
 # history
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=200
+SAVEHIST=200
 setopt appendhistory
 
 # alias
@@ -28,7 +28,7 @@ alias l='ls -laG'
 alias grep='grep --color'
 alias ec='emacsclient -n'
 
-# alias-git
+#alias-git
 alias g='git'
 alias ga='git add'
 alias gc='git commit'
